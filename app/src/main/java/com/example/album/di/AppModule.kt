@@ -2,6 +2,7 @@ package com.example.album.di
 
 import android.content.Context
 import androidx.fragment.app.Fragment
+import com.example.album.BuildConfig
 import com.example.album.data.db.AppDatabase
 import com.example.album.data.model.AlbumListInfoMapper
 import com.example.album.data.remote.GetRemoteAlbumListDataSource
@@ -20,8 +21,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
-private const val BASE_URL = "https://itunes.apple.com/us/rss/topalbums/"
-
 /**
  * A simple class.
  */
@@ -33,7 +32,7 @@ object AppModule {
     @Singleton
     @Provides
     fun provideRetrofit(gson: Gson): Retrofit = Retrofit.Builder()
-        .baseUrl(BASE_URL)
+        .baseUrl(BuildConfig.BASE_URL)
         .addConverterFactory(GsonConverterFactory.create(gson))
         .build()
 

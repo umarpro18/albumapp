@@ -10,7 +10,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-private const val PAGE_URL = "limit=100/json"
+const val PAGE_URL = "limit=100/json"
 
 @HiltViewModel
 class AlbumListViewModel @Inject constructor(
