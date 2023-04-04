@@ -1,12 +1,18 @@
 package com.example.album.feature.albums
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.Observer
 import com.example.album.data.entities.Album
 import com.example.album.data.model.AlbumList
 import com.example.album.domain.AlbumListRemoteUseCase
 import com.example.album.domain.repository.AlbumRepository
+import com.example.album.ui.albums.AlbumListViewModel
+import com.example.album.util.MainCoroutineRule
+import io.mockk.*
+import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mockito
@@ -15,13 +21,27 @@ import org.mockito.Mockito
 class AlbumListViewModelTest {
 
     companion object {
-        private const val ALBUM_NAME = "FirstAlbum"
-        private const val PAGE_LINK = "ALBUM_LINK"
+        const val ALBUM_NAME = "FirstAlbum"
+        const val PAGE_LINK = "ALBUM_LINK"
     }
+
+    private lateinit var viewModel: AlbumListViewModel
+
+    @MockK
+    lateinit var albumListRemoteUseCase: AlbumListRemoteUseCase
 
     @Rule
     @JvmField
     var instantTaskExecuteRole = InstantTaskExecutorRule()
+
+    @get:Rule
+    var coroutinesRule = MainCoroutineRule()
+
+    @Before
+    fun setUp() {
+        MockKAnnotations.init(this, relaxed = true)
+        viewModel = createViewModel()
+    }
 
     private val albumListResponse = AlbumList(
         listOf(
@@ -89,5 +109,45 @@ class AlbumListViewModelTest {
                 }
             }
         }
+    }
+
+
+    @Test
+    fun testLoadAlbumListFromRemote() {
+        val observer = createObserverForUserSettingsRequestState()
+
+        val mockAlbumList = albumListResponse
+
+        coEvery { albumListRemoteUseCase.invoke(any()) } returns com.example.album.utils.Result.Success(
+            mockAlbumList
+        )
+
+        viewModel.fetchAlbumList()
+
+        verifyThatAlbumListIsSuccessfullyLoaded(observer, mockAlbumList)
+    }
+
+    private fun verifyThatAlbumListIsSuccessfullyLoaded(
+        observer: Observer<AlbumListViewModel.ViewState>,
+        albumList: AlbumList
+    ) {
+        verifySequence {
+            observer.onChanged(AlbumListViewModel.ViewState.Loading)
+            observer.onChanged(AlbumListViewModel.ViewState.Loading)
+            observer.onChanged(AlbumListViewModel.ViewState.AlbumListLoaded(albumList))
+        }
+    }
+
+    private fun createObserverForUserSettingsRequestState(): Observer<AlbumListViewModel.ViewState> {
+        val observer =
+            mockk<Observer<AlbumListViewModel.ViewState>> { every { onChanged(any()) } just Runs }
+        viewModel.albumListViewState.observeForever(observer)
+        return observer
+    }
+
+    private fun createViewModel(): AlbumListViewModel {
+        return AlbumListViewModel(
+            albumListRemoteUseCase = albumListRemoteUseCase
+        )
     }
 }

@@ -23,7 +23,7 @@ class AlbumListViewModel @Inject constructor(
         fetchAlbumList()
     }
 
-    private fun fetchAlbumList() {
+    fun fetchAlbumList() {
         viewModelScope.launch {
             try {
                 albumListViewState.value = ViewState.Loading
