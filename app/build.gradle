@@ -55,7 +55,13 @@ dependencies {
     //Retrofit
     def retrofit_version = "2.9.0"
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
+
+    //Moshi
+    def moshi_version = "1.14.0"
+    api "com.squareup.moshi:moshi:$moshi_version"
+    api "com.squareup.moshi:moshi-kotlin:$moshi_version"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
 
     // Architecture Components
     def lifecycle_version = "2.6.1"
@@ -66,7 +72,6 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     testImplementation "androidx.arch.core:core-testing:$androidx_arch_core"
     androidTestImplementation "androidx.arch.core:core-testing:$androidx_arch_core"
-
 
     //Kotlin Coroutines
     def coroutines_android_version = '1.6.4'
@@ -99,14 +104,14 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
-    // Mokito
+    //Mokito
     def mockito_version = "3.6.0"
     androidTestImplementation "org.mockito:mockito-android:${mockito_version}"
     testImplementation "org.mockito:mockito-inline:${mockito_version}"
     testImplementation 'io.mockk:mockk:1.12.0'
     testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4'
 
-    /* Testing kotest */
+    //Testing kotest
     testImplementation 'io.kotest:kotest-assertions-core:4.3.1'
 
 }
