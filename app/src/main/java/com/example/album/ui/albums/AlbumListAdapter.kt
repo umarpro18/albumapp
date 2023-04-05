@@ -71,7 +71,6 @@ class AlbumListAdapter(private val onClickListener: (Album) -> Unit) :
             }
         }
     }
-
 }
 
 class AlbumViewHolder(private val itemBinding: ItemAlbumListBinding) :
