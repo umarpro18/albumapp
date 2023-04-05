@@ -11,6 +11,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.album.R
 import com.example.album.data.entities.Album
@@ -18,6 +19,8 @@ import com.example.album.databinding.FragmentAlbumListBinding
 import com.example.album.utils.autoCleared
 import dagger.hilt.android.AndroidEntryPoint
 
+
+const val ARG_ALBUM = "album"
 @AndroidEntryPoint
 class AlbumListFragment : Fragment() {
 
@@ -68,7 +71,12 @@ class AlbumListFragment : Fragment() {
     }
 
     private fun onAlbumClicked(album: Album) {
-        //Todo
+        val bundle = Bundle()
+        bundle.putParcelable(ARG_ALBUM, album)
+        findNavController().navigate(
+            R.id.action_albumListFragment_to_AlbumDetailFragment,
+            bundle
+        )
     }
 
     private fun setupSearchMenu() {

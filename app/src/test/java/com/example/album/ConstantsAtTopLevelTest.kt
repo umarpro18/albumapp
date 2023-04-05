@@ -1,6 +1,7 @@
-package com.example.album.feature.albums
+package com.example.album
 
 import com.example.album.BuildConfig.BASE_URL
+import com.example.album.ui.albums.ARG_ALBUM
 import com.example.album.ui.albums.PAGE_URL
 import org.junit.Test
 
@@ -16,4 +17,8 @@ class ConstantsValidationTest {
         assert(PAGE_URL == "limit=100/json")
     }
 
+    @Test
+    fun validateArgBundleConstantTest() {
+        assert(ARG_ALBUM == "album")
+    }
 }

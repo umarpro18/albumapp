@@ -8,7 +8,19 @@
     <fragment
         android:id="@+id/AlbumListFragment"
         android:name="com.example.album.ui.albums.AlbumListFragment"
-        tools:layout="@layout/fragment_album_list" >
+        tools:layout="@layout/fragment_album_list">
+        <action
+            android:id="@+id/action_albumListFragment_to_AlbumDetailFragment"
+            app:destination="@id/albumDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/albumDetailFragment"
+        android:name="com.example.album.ui.albumdetail.AlbumDetailFragment"
+        tools:layout="@layout/fragment_album_detail">
+        <action
+            android:id="@+id/action_albumDetailFragment_to_AlbumDetailFragment"
+            app:destination="@id/albumDetailFragment" />
     </fragment>
 
 </navigation>

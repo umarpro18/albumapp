@@ -1,10 +1,12 @@
-package com.example.album.feature.albums
+package com.example.album
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.example.album.data.entities.Album
 import com.example.album.data.model.AlbumList
+import com.example.album.domain.AlbumListLocalUseCase
 import com.example.album.domain.AlbumListRemoteUseCase
+import com.example.album.domain.InsertAlbumListLocalUseCase
 import com.example.album.domain.repository.AlbumRepository
 import com.example.album.ui.albums.AlbumListViewModel
 import com.example.album.util.MainCoroutineRule
@@ -30,6 +32,12 @@ class AlbumListViewModelTest {
     @MockK
     lateinit var albumListRemoteUseCase: AlbumListRemoteUseCase
 
+    @MockK
+    lateinit var albumListLocalUseCase: AlbumListLocalUseCase
+
+    @MockK
+    lateinit var insertAlbumListLocalUseCase: InsertAlbumListLocalUseCase
+
     @Rule
     @JvmField
     var instantTaskExecuteRole = InstantTaskExecutorRule()
@@ -42,6 +50,20 @@ class AlbumListViewModelTest {
         MockKAnnotations.init(this, relaxed = true)
         viewModel = createViewModel()
     }
+
+    private val albumList = listOf(
+        Album(
+            name = ALBUM_NAME,
+            imageUrl60 = "image",
+            imageUrl170 = "image",
+            itemCount = "10",
+            price = "$20",
+            title = "AlbumRock",
+            artist = "Luke",
+            category = "POP",
+            releaseDate = "March 23rd"
+        )
+    )
 
     private val albumListResponse = AlbumList(
         listOf(
@@ -127,6 +149,45 @@ class AlbumListViewModelTest {
         verifyThatAlbumListIsSuccessfullyLoaded(observer, mockAlbumList)
     }
 
+    @Test
+    fun testGetSimilarCategoryAlbumListFromLocal() {
+        val repository: AlbumRepository = Mockito.mock(AlbumRepository::class.java)
+        runBlocking {
+            Mockito.`when`(repository.getAlbumListBasedOnSimilarCategory("title", "categoryFilter"))
+                .thenReturn(albumList)
+
+            AlbumListLocalUseCase(repository).invoke("title", "categoryFilter").let {
+                assert(it is List<Album>)
+                if (it != null) {
+                    assert(it.isNotEmpty())
+                    for (item in it) {
+                        val name = item.name
+                        assert(name == ALBUM_NAME)
+                    }
+                }
+            }
+        }
+    }
+
+    @Test
+    fun testInsertAlbumList() {
+        val observer = createObserverForUserSettingsRequestState()
+
+        val mockAlbumList = albumListResponse
+
+        coEvery { albumListRemoteUseCase.invoke(any()) } returns com.example.album.utils.Result.Success(
+            mockAlbumList
+        )
+
+        viewModel.fetchAlbumList()
+
+        verifyThatAlbumListIsSuccessfullyLoaded(observer, mockAlbumList)
+
+        coVerify(exactly = 0) {
+            insertAlbumListLocalUseCase.invoke(albumList)
+        }
+    }
+
     private fun verifyThatAlbumListIsSuccessfullyLoaded(
         observer: Observer<AlbumListViewModel.ViewState>,
         albumList: AlbumList
@@ -147,7 +208,8 @@ class AlbumListViewModelTest {
 
     private fun createViewModel(): AlbumListViewModel {
         return AlbumListViewModel(
-            albumListRemoteUseCase = albumListRemoteUseCase
+            albumListRemoteUseCase = albumListRemoteUseCase,
+            insertAlbumListLocalUseCase = insertAlbumListLocalUseCase
         )
     }
 }

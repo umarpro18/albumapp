@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.album.data.model.AlbumList
 import com.example.album.domain.AlbumListRemoteUseCase
+import com.example.album.domain.InsertAlbumListLocalUseCase
 import com.example.album.utils.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -14,7 +15,8 @@ const val PAGE_URL = "limit=100/json"
 
 @HiltViewModel
 class AlbumListViewModel @Inject constructor(
-    private val albumListRemoteUseCase: AlbumListRemoteUseCase
+    private val albumListRemoteUseCase: AlbumListRemoteUseCase,
+    private val insertAlbumListLocalUseCase: InsertAlbumListLocalUseCase
 ) : ViewModel() {
 
     val albumListViewState: MutableLiveData<ViewState> = MutableLiveData()
@@ -30,6 +32,7 @@ class AlbumListViewModel @Inject constructor(
                 when (val albumListResponse = getAlbumList(PAGE_URL)) {
                     is Result.Success -> {
                         albumListViewState.value = ViewState.AlbumListLoaded(albumListResponse.data)
+                        insertAlbumListLocalUseCase.invoke(albumListResponse.data.albumList)
                     }
                     is Result.Error -> {
                         albumListViewState.value =

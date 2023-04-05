@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">Albums</string>
     <string name="search_menu">Search</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="album_category_label">Category: </string>
+    <string name="album_items_count_label">Item #: </string>
+    <string name="album_price_label">Price: </string>
+    <string name="similar_album_label">You Might also like: </string>
 </resources>

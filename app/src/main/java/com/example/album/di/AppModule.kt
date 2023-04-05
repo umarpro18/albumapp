@@ -4,10 +4,13 @@ import android.content.Context
 import androidx.fragment.app.Fragment
 import com.example.album.BuildConfig
 import com.example.album.data.db.AppDatabase
+import com.example.album.data.db.GetLocalAlbumListDataSource
 import com.example.album.data.model.AlbumListInfoMapper
 import com.example.album.data.remote.GetRemoteAlbumListDataSource
+import com.example.album.domain.AlbumListLocalUseCase
 import com.example.album.domain.AlbumListRemoteUseCase
 import com.example.album.domain.AlbumService
+import com.example.album.domain.InsertAlbumListLocalUseCase
 import com.example.album.domain.repository.AlbumRepository
 import com.example.album.utils.CoroutineDispatcherProvider
 import com.google.gson.Gson
@@ -59,10 +62,19 @@ object AppModule {
 
     @Singleton
     @Provides
+    fun provideAlbumLocalUseCase(repository: AlbumRepository) = AlbumListLocalUseCase(repository)
+
+    @Singleton
+    @Provides
+    fun provideInsertAlbumLocalUseCase(repository: AlbumRepository) = InsertAlbumListLocalUseCase(repository)
+
+    @Singleton
+    @Provides
     fun provideAlbumRepository(
         getRemoteAlbumListDataSource: GetRemoteAlbumListDataSource,
+        getLocalAlbumListDataSource: GetLocalAlbumListDataSource,
         dispatcherProvider: CoroutineDispatcherProvider
-    ) = AlbumRepository(getRemoteAlbumListDataSource, dispatcherProvider)
+    ) = AlbumRepository(getRemoteAlbumListDataSource, getLocalAlbumListDataSource, dispatcherProvider)
 
     @Singleton
     @Provides

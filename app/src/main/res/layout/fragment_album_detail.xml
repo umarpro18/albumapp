@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootViewAlbumDetail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.albumdetail.AlbumDetailFragment">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageViewAlbum"
+        android:layout_width="170sp"
+        android:layout_height="170dp"
+        android:layout_marginTop="16dp"
+        app:cornerFamily="rounded"
+        app:cornerSize="8%"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardViewDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:elevation="3dp"
+        app:cardCornerRadius="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewAlbum">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textViewArtistName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="10dp"
+                android:textAppearance="?attr/textAppearanceHeadline5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Artist name" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textViewCategoryLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/album_category_label"
+                android:textAppearance="?attr/textAppearanceBody2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewArtistName"
+                app:layout_constraintWidth_percent=".9"
+                tools:text="Category"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textViewItemCountLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/album_items_count_label"
+                android:textAppearance="?attr/textAppearanceBody2"
+                android:layout_marginTop="4dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewCategoryLabel"
+                app:layout_constraintWidth_percent=".7"
+                tools:text="Items Count"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textViewPriceLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/album_price_label"
+                android:textAppearance="?attr/textAppearanceBody2"
+                android:layout_marginTop="4dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewItemCountLabel"
+                app:layout_constraintWidth_percent=".7"
+                tools:text="Price" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/textViewSimilarCategoryListLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/similar_album_label"
+        android:textAppearance="?attr/textAppearanceBody1"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerViewAlbumsCategory"
+        app:layout_constraintWidth_percent=".7"
+        tools:text="You Might like" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewAlbumsCategory"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="14dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        tools:listitem="@layout/item_similar_category_album_list" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
