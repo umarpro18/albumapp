@@ -43,9 +43,9 @@ class AlbumDetailFragment : Fragment() {
 
             binding.apply {
                 textViewArtistName.text = it.artist
-                textViewCategoryLabel.text = it.category
-                textViewItemCountLabel.text = it.itemCount
-                textViewPriceLabel.text = it.price
+                textViewCategoryLabel.text = context?.getString(R.string.album_category, it.category)
+                textViewItemCountLabel.text = context?.getString(R.string.album_items_count, it.itemCount)
+                textViewPriceLabel.text = context?.getString(R.string.album_price, it.price)
 
                 Glide.with(binding.root)
                     .load(it.imageUrl60)
