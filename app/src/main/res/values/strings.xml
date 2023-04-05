@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Albums</string>
+    <string name="app_bar_title_home">Albums</string>
+    <string name="app_bar_title_detail">Album detail</string>
     <string name="search_menu">Search</string>
     <string name="album_category">Category: %1$s</string>
     <string name="album_items_count">Item #: %1$s</string>

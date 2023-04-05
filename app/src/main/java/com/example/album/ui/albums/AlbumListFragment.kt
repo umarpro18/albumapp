@@ -34,6 +34,8 @@ class AlbumListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentAlbumListBinding.inflate(inflater, container, false)
+
+        requireActivity().title = context?.getString(R.string.app_bar_title_home)
         return binding.root
     }
 

@@ -32,6 +32,8 @@ class AlbumDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentAlbumDetailBinding.inflate(inflater, container, false)
+
+        requireActivity().title = context?.getString(R.string.app_bar_title_detail)
         return binding.root
     }
 
