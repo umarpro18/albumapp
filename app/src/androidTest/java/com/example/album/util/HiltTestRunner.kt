@@ -1,10 +1,11 @@
-package com.example.album.runner
+package com.example.album.util
 
 import android.app.Application
 import android.content.Context
 import androidx.test.runner.AndroidJUnitRunner
 import dagger.hilt.android.testing.HiltTestApplication
 
+@Suppress("unused")
 class HiltTestRunner : AndroidJUnitRunner() {
 
     override fun newApplication(

@@ -3,11 +3,10 @@ package com.example.album
 import androidx.annotation.IdRes
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions
+import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
-import androidx.test.espresso.matcher.ViewMatchers
-import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
-import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.*
 import com.example.album.ui.albumdetail.AlbumDetailFragment
 import com.example.album.ui.albums.AlbumListFragment
 import com.example.album.ui.albums.AlbumViewHolder
@@ -17,6 +16,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+
 
 @HiltAndroidTest
 @ExperimentalCoroutinesApi
@@ -34,7 +34,7 @@ class AlbumListFragmentTest {
     fun shouldDisplayAlbumListFragment() {
         launchFragmentInHiltContainer<AlbumListFragment>()
 
-        onView(ViewMatchers.withId(R.id.recyclerViewAlbums)).check(
+        onView(withId(R.id.recyclerViewAlbums)).check(
             matches(isDisplayed())
         )
     }
@@ -43,19 +43,19 @@ class AlbumListFragmentTest {
     fun shouldDisplayAlbumListDetailFragment() {
         launchFragmentInHiltContainer<AlbumDetailFragment>()
 
-        onView(ViewMatchers.withId(R.id.rootViewAlbumDetail)).check(
+        onView(withId(R.id.rootViewAlbumDetail)).check(
             matches(isDisplayed())
         )
     }
 
     @Test
-    fun shouldAbleToClickTheAlbumList() {
+    fun shouldAbleToScrollAndClickTheAlbumList() {
         launchFragmentInHiltContainer<AlbumListFragment>()
 
-        clickRecyclerViewItem(R.id.recyclerViewAlbums)
+        scrollAndClickRecyclerViewItem(R.id.recyclerViewAlbums)
     }
 
-    private fun clickRecyclerViewItem(@IdRes recyclerViewId: Int, position: Int = 10) {
+    private fun scrollAndClickRecyclerViewItem(@IdRes recyclerViewId: Int, position: Int = 4) {
         onView(withId(recyclerViewId))
             .perform(
                 RecyclerViewActions
@@ -64,4 +64,6 @@ class AlbumListFragmentTest {
             )
 
     }
+
+    //TODO: As future improvements, incorporate fake view model with data to test the recyclerview text view items
 }
