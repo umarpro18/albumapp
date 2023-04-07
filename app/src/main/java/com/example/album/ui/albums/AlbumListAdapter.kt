@@ -12,6 +12,10 @@ import com.example.album.databinding.ItemAlbumListBinding
 import java.util.*
 import kotlin.collections.ArrayList
 
+/**
+* A adapter class responsible for binding date into the view for list of albums
+*/
+
 class AlbumListAdapter(private val onClickListener: (Album) -> Unit) :
     RecyclerView.Adapter<AlbumViewHolder>(), Filterable {
 

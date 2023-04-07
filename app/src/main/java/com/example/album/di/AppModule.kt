@@ -24,7 +24,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
 
 /**
- * A simple class.
+ * Object class responsible to hold and maintain all di related functionality for the whole app
  */
 
 @Module

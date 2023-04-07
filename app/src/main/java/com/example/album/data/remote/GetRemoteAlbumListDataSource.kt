@@ -9,7 +9,7 @@ import java.io.IOException
 import javax.inject.Inject
 
 /**
- * A simple classs.
+ * A simple class responsible handle api response and sets success or failure objects
  */
 
 class GetRemoteAlbumListDataSource

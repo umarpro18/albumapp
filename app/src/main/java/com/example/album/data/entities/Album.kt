@@ -6,6 +6,10 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import kotlinx.parcelize.Parcelize
 
+/**
+ * A entity data class responsible storing/creating data in a table.
+ */
+
 @Parcelize
 @Entity(tableName = "album", primaryKeys = ["name", "title"])
 @Keep

@@ -8,6 +8,10 @@ import com.example.album.R
 import com.example.album.data.entities.Album
 import com.example.album.databinding.ItemSimilarCategoryAlbumListBinding
 
+/**
+ * A adapter class responsible for binding date into the view for similar albums
+ */
+
 class SimilarCategoryAlbumListAdapter(private val onClickListener: (Album) -> Unit) :
     RecyclerView.Adapter<AlbumViewHolder>() {
 

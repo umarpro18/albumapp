@@ -10,7 +10,7 @@ import com.example.album.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
- * A simple class.
+ * Launcher activity class responsible for holding fragment
  */
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -21,8 +21,6 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        val navController: NavController = (supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment).navController
 
     }
 }

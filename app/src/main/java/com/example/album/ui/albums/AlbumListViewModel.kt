@@ -11,6 +11,10 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * View model class responsible for making api calls to fetch album list and also insert it into local db
+ */
+
 const val PAGE_URL = "limit=100/json"
 
 @HiltViewModel

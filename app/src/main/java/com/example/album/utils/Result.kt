@@ -1,5 +1,9 @@
 package com.example.album.utils
 
+/**
+ * Sealed call responsible to hold api response data based on stated.
+ */
+
 sealed class Result<out T : Any> {
 
     data class Success<out T : Any>(val data: T) : Result<T>()

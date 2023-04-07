@@ -20,7 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 
 /**
- * A simple album detail subclass.
+ * A detail fragment class responsible for displaying album details along with list of similar albums
  */
 @AndroidEntryPoint
 class AlbumDetailFragment : Fragment() {

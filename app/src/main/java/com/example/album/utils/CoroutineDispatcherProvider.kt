@@ -7,8 +7,9 @@ import kotlinx.coroutines.Dispatchers.Main
 import javax.inject.Inject
 
 /**
- * Provide coroutines context.
+ * Data call that provide coroutines context.
  */
+
 data class CoroutineDispatcherProvider(
     val main: CoroutineDispatcher,
     val computation: CoroutineDispatcher,

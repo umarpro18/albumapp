@@ -19,6 +19,9 @@ import com.example.album.databinding.FragmentAlbumListBinding
 import com.example.album.utils.autoCleared
 import dagger.hilt.android.AndroidEntryPoint
 
+/**
+* A fragment class responsible displaying list of albums
+*/
 
 const val ARG_ALBUM = "album"
 @AndroidEntryPoint

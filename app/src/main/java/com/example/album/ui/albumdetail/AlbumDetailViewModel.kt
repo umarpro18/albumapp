@@ -6,6 +6,10 @@ import com.example.album.domain.AlbumListLocalUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
+/**
+ * View model class responsible for making api/db calls to fetch similar category album list
+ */
+
 @HiltViewModel
 class AlbumDetailViewModel @Inject constructor(
     private val albumListLocalUseCase: AlbumListLocalUseCase

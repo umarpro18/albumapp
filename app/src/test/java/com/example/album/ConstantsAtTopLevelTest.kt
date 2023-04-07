@@ -5,6 +5,10 @@ import com.example.album.ui.albums.ARG_ALBUM
 import com.example.album.ui.albums.PAGE_URL
 import org.junit.Test
 
+/**
+ * Class responsible for unit tests, specifically testing app constants
+ */
+
 class ConstantsValidationTest {
 
     @Test

@@ -8,11 +8,12 @@ import com.example.album.data.entities.Album
 
 /**
  * A simple dao class responsible for the db operations such as
- * retrieve, insert or delete album data.
+ * retrieve, insert album data.
  */
 
 @Dao
 interface AlbumDao {
+
     @Query("SELECT * FROM album WHERE title !=:title AND category =:categoryName")
     suspend fun getAlbumListBasedOnSimilarCategory(title: String, categoryName: String): List<Album>?
 

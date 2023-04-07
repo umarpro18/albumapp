@@ -19,6 +19,10 @@ import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mockito
 
+/**
+ * Class responsible for unit tests
+ */
+
 @ExperimentalCoroutinesApi
 class AlbumListViewModelTest {
 

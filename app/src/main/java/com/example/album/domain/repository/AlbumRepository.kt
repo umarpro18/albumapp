@@ -8,6 +8,11 @@ import com.example.album.utils.CoroutineDispatcherProvider
 import com.example.album.utils.Result
 import kotlinx.coroutines.withContext
 
+/**
+ * Repository class responsible to fetch data either from local or remote
+ * It uses background thread to run the job
+ */
+
 class AlbumRepository(
     private val getRemoteAlbumListDataSource: GetRemoteAlbumListDataSource,
     private val getLocalAlbumListDataSource: GetLocalAlbumListDataSource,

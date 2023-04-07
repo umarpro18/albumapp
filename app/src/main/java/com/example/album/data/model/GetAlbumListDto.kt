@@ -5,7 +5,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 /**
- * A simple entity class responsible storing album data.
+ * A simple dto date class converts api call response into data object
  */
 
 @Keep

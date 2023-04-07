@@ -5,7 +5,7 @@ import com.example.album.utils.Mapper
 import javax.inject.Inject
 
 /**
- * A simple mapper class responsible mapping dto into dao.
+ * A simple mapper class responsible mapping album list dto into dao.
  */
 
 class AlbumListInfoMapper @Inject constructor() : Mapper<GetAlbumListDto?, AlbumList> {

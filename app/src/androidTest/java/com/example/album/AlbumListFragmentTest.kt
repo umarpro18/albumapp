@@ -3,7 +3,6 @@ package com.example.album
 import androidx.annotation.IdRes
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions
-import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
@@ -17,6 +16,9 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
+/**
+ * UI tests based on espresso framework
+ */
 
 @HiltAndroidTest
 @ExperimentalCoroutinesApi
@@ -65,5 +67,5 @@ class AlbumListFragmentTest {
 
     }
 
-    //TODO: As future improvements, incorporate fake view model with data to test the recyclerview text view items
+    //TODO: As future improvements, to incorporate tests to test the the recyclerview text view items
 }

@@ -6,7 +6,7 @@ import retrofit2.http.GET
 import retrofit2.http.Url
 
 /**
- * A simple class.
+ * Interface class responsible to make api call via retrofit
  */
 
 interface AlbumService {
