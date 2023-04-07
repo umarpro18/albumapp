@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.example.album.R
 import com.example.album.data.entities.Album
 import com.example.album.databinding.FragmentAlbumDetailBinding
@@ -51,6 +52,7 @@ class AlbumDetailFragment : Fragment() {
 
                 Glide.with(binding.root)
                     .load(it.imageUrl60)
+                    .transform(RoundedCorners(20))
                     .placeholder(R.drawable.ic_launcher_background)
                     .error(R.drawable.ic_launcher_background)
                     .into(imageViewAlbum)
