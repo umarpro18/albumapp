@@ -113,4 +113,5 @@ class AlbumListFragment : Fragment() {
             }
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
     }
+
 }
