@@ -38,3 +38,10 @@ Please organize, design, test and document your code as if it were going into pr
 All the best and happy coding,
 
 The SaltPay Team
+    
+    
+    Comments from them:
+    only loads 60 items from api but need 100
+    More work on the view layer (search func etc.)
+    code can be more consice
+    
